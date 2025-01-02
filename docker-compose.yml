@@ -1,0 +1,27 @@
+services:
+  database:
+    image: postgres:16.4
+    volumes:
+      - /database/sqlalchemy-utilities:/var/lib/postgresql/data
+    ports:
+      - "54000:5432"
+    container_name: sqlalchemy-utilities-db
+    command: postgres  -c shared_buffers=256MB -c max_connections=100
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  fastapi:
+    container_name: sqlalchemy-utilities-fastapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "54001:54001"
+    volumes:
+      - .:/code
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 54001
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - database
