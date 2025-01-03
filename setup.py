@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sqlalchemy-utilities',
-    version='1.0.2',
+    version='1.0.3',
     description='Included sqlalchemy serializers',
     author='Vijay Tiwari',
     author_email='rsvijaytiwari@gmail.com',
