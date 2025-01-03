@@ -7,7 +7,7 @@ from sqlalchemy.future import select
 
 from models.connection import create_db, get_db
 from models.users import User, UserAddress
-from utilities.serilizers import ModelSerializer
+from sqlalchemy_utilities.serilizers import ModelSerializer
 
 
 @asynccontextmanager
